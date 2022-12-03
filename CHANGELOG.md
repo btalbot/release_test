@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/btalbot/release_test/compare/v0.1.0...v0.1.1) (2022-12-03)
+
+
+### Bug Fixes
+
+* **build:** remove action 'main', action 'release' runs spec ([e083772](https://github.com/btalbot/release_test/commit/e083772da311b20e8d5ab2adfc4824fead77d7ba))
+
 ## 0.1.0 (2022-12-02)
 
 
