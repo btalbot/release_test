@@ -6,18 +6,30 @@ on:
       - master
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '2.7.6'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run spec tests
+        run: bundle exec rake spec
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
+      - uses: GoogleCloudPlatform/release-please-action@v3
         id: release
         with:
-          # The release type
           release-type: ruby
-          # A name for the artifact releases are being created for
-          # which is the name of our gem
-          package-name: release-please-demo
-          # Should breaking changes before 1.0.0 produce minor bumps?
+          package-name: release_test
           bump-minor-pre-major: true
-          # Path to our version file to increment
-          version-file: "lib/release/please/demo/version.rb"
+          version-file: "lib/release_test/version.rb"
+          skip-github-release: true
